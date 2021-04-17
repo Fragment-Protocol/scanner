@@ -11,5 +11,5 @@ def _open_abi(name):
     return result
 
 
-withdraw_nft = _open_abi('withdraw_nft')
-return_tokens = _open_abi('return_tokens')
+factory = _open_abi("factory")
+exchange_from_ethereum = _open_abi("exchange_from_ethereum")

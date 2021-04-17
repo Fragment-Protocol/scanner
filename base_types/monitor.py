@@ -1,4 +1,5 @@
 import json
+import logging
 
 import pika
 
@@ -46,7 +47,7 @@ class Monitor:
         )
         connection.close()
 
-        print(
+        logging.info(
             "{} sent message to backend: {}".format(self.__class__.__name__, message),
             flush=True,
         )

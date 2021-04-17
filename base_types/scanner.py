@@ -1,6 +1,7 @@
 import os
 import sys
 import time
+import logging
 import traceback
 
 from base_types.network import Network
@@ -45,7 +46,7 @@ class Scanner:
     def poller(self):
         self.last_block_time = time.time()
         self.next_block_number = self.last_block_persister.get_last_block()
-        print('hello from {}'.format(self.network.type), flush=True)
+        logging.info('hello from {}'.format(self.network.type), flush=True)
 
         while True:
             self.polling()
@@ -55,7 +56,7 @@ class Scanner:
             self.last_block_number = self.network.get_last_block()
 
             if self.last_block_number - self.next_block_number > self.commitment_chain_length:
-                print('{}: Process next block {}/{} immediately.'.format(self.network.type, self.next_block_number,
+                logging.info('{}: Process next block {}/{} immediately.'.format(self.network.type, self.next_block_number,
                                                                          self.last_block_number), flush=True)
                 self.load_next_block()
                 time.sleep(self.reach_interval)
@@ -63,16 +64,16 @@ class Scanner:
 
             time_interval = self.last_block_time - time.time()
             if time_interval > self.WARN_INTERVAL:
-                print('{}: there is no block from {} seconds!'.format(self.network.type, time_interval))
+                logging.info('{}: there is no block from {} seconds!'.format(self.network.type, time_interval))
             elif time_interval > self.INFO_INTERVAL:
-                print('{}: there is no block from {} seconds.'.format(self.network.type, time_interval), flush=True)
+                logging.info('{}: there is no block from {} seconds.'.format(self.network.type, time_interval), flush=True)
 
             # pending transactions logic
 
-            print('{}: all blocks processed, wait new one.'.format(self.network.type))
-        except Exception as e:
-            print('{}: exception handled in polling cycle. Continue.'.format(self.network.type))
-            print('\n'.join(traceback.format_exception(*sys.exc_info())), flush=True)
+            logging.info('{}: all blocks processed, wait new one.'.format(self.network.type))
+        except Exception:
+            logging.info('{}: exception handled in polling cycle. Continue.'.format(self.network.type))
+            logging.info('\n'.join(traceback.format_exception(*sys.exc_info())), flush=True)
 
         time.sleep(self.polling_interval)
 
