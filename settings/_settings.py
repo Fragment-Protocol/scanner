@@ -1,3 +1,2 @@
-NETWORKS = [
-
-]
+NETWORKS = {}
+MONITORS = {}
