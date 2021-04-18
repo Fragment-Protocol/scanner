@@ -46,7 +46,7 @@ class Scanner:
     def poller(self):
         self.last_block_time = time.time()
         self.next_block_number = self.last_block_persister.get_last_block()
-        logging.info('hello from {}'.format(self.network.type), flush=True)
+        logging.info('hello from {}'.format(self.network.type))
 
         while True:
             self.polling()
@@ -57,7 +57,7 @@ class Scanner:
 
             if self.last_block_number - self.next_block_number > self.commitment_chain_length:
                 logging.info('{}: Process next block {}/{} immediately.'.format(self.network.type, self.next_block_number,
-                                                                         self.last_block_number), flush=True)
+                                                                         self.last_block_number))
                 self.load_next_block()
                 time.sleep(self.reach_interval)
                 return
@@ -66,14 +66,14 @@ class Scanner:
             if time_interval > self.WARN_INTERVAL:
                 logging.info('{}: there is no block from {} seconds!'.format(self.network.type, time_interval))
             elif time_interval > self.INFO_INTERVAL:
-                logging.info('{}: there is no block from {} seconds.'.format(self.network.type, time_interval), flush=True)
+                logging.info('{}: there is no block from {} seconds.'.format(self.network.type, time_interval))
 
             # pending transactions logic
 
             logging.info('{}: all blocks processed, wait new one.'.format(self.network.type))
         except Exception:
             logging.info('{}: exception handled in polling cycle. Continue.'.format(self.network.type))
-            logging.info('\n'.join(traceback.format_exception(*sys.exc_info())), flush=True)
+            logging.info('\n'.join(traceback.format_exception(*sys.exc_info())))
 
         time.sleep(self.polling_interval)
 

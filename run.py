@@ -37,7 +37,7 @@ class ScanEntrypoint(threading.Thread):
 
 if __name__ == "__main__":
     for net_name, net_info in NETWORKS.items():
-        maker_names = net_info["scanner_makers"]
+        maker_names = scanner_makers.keys()
         for maker_name in maker_names:
             maker = scanner_makers[maker_name]
             scan = ScanEntrypoint(

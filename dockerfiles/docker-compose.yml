@@ -1,0 +1,10 @@
+version: '3.7'
+
+services:
+  scanner:
+    container_name: scanner
+    restart: always
+    build:
+      context: ..
+      dockerfile: dockerfiles/scanner.Dockerfile
+    command: poetry run python run.py

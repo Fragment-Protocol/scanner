@@ -47,7 +47,4 @@ class Monitor:
         )
         connection.close()
 
-        logging.info(
-            "{} sent message to backend: {}".format(self.__class__.__name__, message),
-            flush=True,
-        )
+        logging.info("{} sent message to backend: {}".format(self.__class__.__name__, message))

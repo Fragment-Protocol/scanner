@@ -11,10 +11,10 @@ from base_types import Block, Scanner, BlockEvent
 class EthScanner(Scanner):
 
     def process_block(self, block: Block):
-        logging.info('{}: new block received {} ({})'.format(self.network.type, block.number, block.hash), flush=True)
+        logging.info('{}: new block received {} ({})'.format(self.network.type, block.number, block.hash))
 
         if not block.transactions:
-            logging.info('{}: no transactions in {} ({})'.format(self.network.type, block.number, block.hash), flush=True)
+            logging.info('{}: no transactions in {} ({})'.format(self.network.type, block.number, block.hash))
             return
 
         address_transactions = collections.defaultdict(list)
