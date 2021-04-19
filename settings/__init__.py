@@ -1,3 +1,7 @@
+"""
+Module with basic project settings.
+"""
+
 import logging
 
 from settings._settings import *

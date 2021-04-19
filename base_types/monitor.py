@@ -7,6 +7,9 @@ from settings import NETWORKS
 
 
 class Monitor:
+    """
+    Basic monitor type.
+    """
     network_type: str
     event_type: str
     queue: str
@@ -16,17 +19,26 @@ class Monitor:
         self.queue = NETWORKS[self.network_type]["queue"]
 
     def process(self, block_event):
+        """
+        The main method for parsing a block.
+        """
         if block_event.network.type != self.network_type:
             return
 
         self.on_new_block_event(block_event)
 
     def on_new_block_event(self, block_event):
+        """
+        The method for writing parsing logic for specific block events.
+        """
         raise NotImplementedError(
             "WARNING: Function on_new_block_event must be overridden."
         )
 
     def send_to_backend(self, message: dict):
+        """
+        The method for sending a message to the backend.
+        """
         connection = pika.BlockingConnection(
             pika.ConnectionParameters(
                 "localhost",

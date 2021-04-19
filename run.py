@@ -35,6 +35,7 @@ class ScanEntrypoint(threading.Thread):
         self.network.scanner.poller()
 
 
+# Running scanner
 if __name__ == "__main__":
     for net_name, net_info in NETWORKS.items():
         maker_names = scanner_makers.keys()

@@ -8,6 +8,9 @@ from base_types.network import Network
 
 
 class LastBlockPersister:
+    """
+    Class for write block numbers.
+    """
     base_dir = 'block_numbers'
 
     def __init__(self, network: Network):
@@ -28,6 +31,9 @@ class LastBlockPersister:
 
 
 class Scanner:
+    """
+    Basic scanner type.
+    """
     INFO_INTERVAL = 60000
     WARN_INTERVAL = 120000
 
@@ -41,6 +47,9 @@ class Scanner:
         self.reach_interval = reach_interval
 
     def process_block(self, block):
+        """
+        The method for writing block processing logic.
+        """
         raise NotImplementedError("WARNING: Function process_block must be overridden.")
 
     def poller(self):
@@ -78,6 +87,9 @@ class Scanner:
         time.sleep(self.polling_interval)
 
     def load_next_block(self):
+        """
+        The method for writing block numbers.
+        """
         block = self.network.get_block(self.next_block_number)
 
         self.last_block_persister.save_last_block(self.next_block_number)

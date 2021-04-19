@@ -3,6 +3,9 @@ from base_types.transaction_receipt import TransactionReceipt
 
 
 class Network:
+    """
+    Basic network type.
+    """
     def __init__(self, type: str):
         self.type: str = type
 
