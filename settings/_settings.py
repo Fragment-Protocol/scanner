@@ -22,3 +22,10 @@ MONITORS = {
     "DepositBEP20": "BSC_MAINNET",
     "IsReadyToWithdraw": "BSC_MAINNET",
 }
+CONTRACT_ADDRESS = {
+    "BSC_MAINNET": "",
+    "ETHEREUM_MAINNET": ""
+}
+
+if not CONTRACT_ADDRESS["BSC_MAINNET"] or not CONTRACT_ADDRESS["ETHEREUM_MAINNET"]:
+    raise ValueError("Keys in CONTRACT_ADDRESS can't be empty.")

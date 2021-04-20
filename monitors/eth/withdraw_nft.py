@@ -1,7 +1,7 @@
 from web3 import Web3, HTTPProvider
 
-from settings import NETWORKS
 from contracts import exchange_from_ethereum
+from settings import NETWORKS, CONTRACT_ADDRESS
 from base_types import Block, Monitor, BlockEvent, Transaction
 
 
@@ -12,7 +12,7 @@ class WithdrawNFT(Monitor):
         w3 = Web3(HTTPProvider(NETWORKS[self.network_type]["url"]))
         contract = w3.eth.contract(
             address=Web3.toChecksumAddress(
-                "0x938A1a961329772FebdF5e4Cea6830865b9b2c1C"
+                CONTRACT_ADDRESS[self.network_type]
             ),
             abi=exchange_from_ethereum,
         )
