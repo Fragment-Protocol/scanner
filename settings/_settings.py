@@ -14,4 +14,11 @@ NETWORKS = {
         'remove_middleware': True,
     },
 }
-MONITORS = {}
+MONITORS = {
+    "DepositNFT": "ETHEREUM_MAINNET",
+    "WithdrawNFT": "ETHEREUM_MAINNET",
+
+    "TokenCreated": "BSC_MAINNET",
+    "DepositBEP20": "BSC_MAINNET",
+    "IsReadyToWithdraw": "BSC_MAINNET",
+}
