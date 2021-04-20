@@ -41,7 +41,7 @@ class Monitor:
         """
         connection = pika.BlockingConnection(
             pika.ConnectionParameters(
-                "localhost",
+                "rabbitmq",
                 5672,
                 "rabbit",
                 pika.PlainCredentials("rabbit", "rabbit"),

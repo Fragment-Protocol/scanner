@@ -22,4 +22,5 @@ class DepositNFT(Monitor):
 
         if events:
             for event in events:
-                self.send_to_backend(event["args"])
+                message = dict(event["args"])
+                self.send_to_backend(message=message)
