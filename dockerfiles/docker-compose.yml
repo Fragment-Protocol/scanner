@@ -7,4 +7,6 @@ services:
     build:
       context: ..
       dockerfile: dockerfiles/scanner.Dockerfile
+    volumes:
+      - ../block_numbers:/scanner/block_numbers
     command: poetry run python run.py
